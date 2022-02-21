@@ -40,4 +40,12 @@ router.get('/viewpost', async (req, res) => {
     }
 })
 
+router.get('/edit', async (req, res) => {
+    try{
+        res.render('editpost');
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
 module.exports = router;
