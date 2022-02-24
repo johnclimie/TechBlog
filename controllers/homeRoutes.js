@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const withAuth = require('../utils/helpers');
 
 router.get('/', async (req, res) => {
     try {
@@ -24,7 +25,7 @@ router.get('/dashboard', async (req, res) => {
     }
 })
 
-router.get('/create', async (req, res) => {
+router.get('/create', withAuth, async (req, res) => {
     try {
         res.render('create', {loggedIn: req.session.loggedIn});
     } catch (err) {
@@ -32,7 +33,7 @@ router.get('/create', async (req, res) => {
     }
 })
 
-router.get('/viewpost', async (req, res) => {
+router.get('/viewpost', withAuth, async (req, res) => {
     try {
         res.render('viewpost', {loggedIn: req.session.loggedIn});
     } catch (err) {
@@ -40,7 +41,7 @@ router.get('/viewpost', async (req, res) => {
     }
 })
 
-router.get('/edit', async (req, res) => {
+router.get('/edit', withAuth, async (req, res) => {
     try{
         res.render('editpost', {loggedIn: req.session.loggedIn});
     } catch (err) {
