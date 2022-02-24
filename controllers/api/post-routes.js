@@ -8,8 +8,10 @@ router.post('/', async (req, res) => {
 
         const dbUserData = await Post.create({
             username: req.session.username,
+            title: req.body.title,
             postcontent: req.body.postcontent,
-            date: dateString
+            date: dateString,
+            user_id: req.session.user_id
         });
 
         res.status(200).json(dbUserData);
