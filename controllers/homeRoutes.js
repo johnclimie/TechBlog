@@ -48,7 +48,15 @@ router.get('/viewpost/:id', async (req, res) => {
 
         const post = dbPostData.get({ plain: true });
 
-        res.render('viewpost', {loggedIn: req.session.loggedIn, post});
+        let editable;
+
+        if (req.session.user_id == post.user_id) {
+            editable = true;
+        } else {
+            editable = false;
+        }
+
+        res.render('viewpost', {loggedIn: req.session.loggedIn, post, editable});
     } catch (err) {
         res.status(500).json(err);
     }
