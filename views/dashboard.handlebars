@@ -1,11 +1,7 @@
 <div class="d-flex justify-content-center row">
-{{> post }}
-
-{{> post }}
-
-{{> post }}
-
-{{> post }}
+{{#each postDataArr}}
+{{> post}}
+{{/each}}
 <form action="/create" class="btn w-50 m-3">
     <button class="btn btn-success w-50 m-3" type="submit">Add Post</button>
 </form>

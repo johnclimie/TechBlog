@@ -24,7 +24,11 @@ router.get('/login', async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     try {
-        res.render('dashboard', {loggedIn: req.session.loggedIn});
+        const postData = await Post.findAll();
+
+        const postDataArr = postData.map((post) => post.get({ plain: true }))
+
+        res.render('dashboard', {loggedIn: req.session.loggedIn, postDataArr});
     } catch (err) {
         res.status(500).json(err);
     }
@@ -38,9 +42,13 @@ router.get('/create', withAuth, async (req, res) => {
     }
 })
 
-router.get('/viewpost', withAuth, async (req, res) => {
+router.get('/viewpost/:id', async (req, res) => {
     try {
-        res.render('viewpost', {loggedIn: req.session.loggedIn});
+        const dbPostData = await Post.findByPk(req.params.id);
+
+        const post = dbPostData.get({ plain: true });
+
+        res.render('viewpost', {loggedIn: req.session.loggedIn, post});
     } catch (err) {
         res.status(500).json(err);
     }
