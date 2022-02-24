@@ -1,9 +1,14 @@
 const router = require('express').Router();
+const { Post } = require('../models');
 const withAuth = require('../utils/helpers');
 
 router.get('/', async (req, res) => {
     try {
-        res.render('homepage', {loggedIn: req.session.loggedIn});
+        const postData = await Post.findAll();
+
+        const postDataArr = postData.map((post) => post.get({ plain: true }))
+
+        res.render('homepage', {loggedIn: req.session.loggedIn, postDataArr});
     } catch (err) {
         res.status(500).json(err);
     }
