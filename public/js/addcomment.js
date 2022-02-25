@@ -3,8 +3,10 @@ async function addCommentFormHandler(event) {
 
     const commentcontent = document.querySelector('#commentcontent').value.trim();
 
+    console.log(commentcontent);
+
     if (commentcontent) {
-        const response = await fetch('#', {
+        const response = await fetch('/api/comments/', {
             method: 'POST',
             body: JSON.stringify({
                 commentcontent
@@ -24,4 +26,4 @@ async function addCommentFormHandler(event) {
     }
 }
 
-document.querySelector('#addcomment')
+document.querySelector('#addcomment').addEventListener('submit', addCommentFormHandler);

@@ -46,6 +46,8 @@ router.get('/viewpost/:id', async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id);
 
+        req.session.currentview = req.params.id;
+
         const post = dbPostData.get({ plain: true });
 
         let editable;
