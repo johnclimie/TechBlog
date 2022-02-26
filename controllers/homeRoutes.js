@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../models');
+const { Post, Comment } = require('../models');
 const withAuth = require('../utils/helpers');
 
 router.get('/', async (req, res) => {
@@ -58,7 +58,16 @@ router.get('/viewpost/:id', async (req, res) => {
             editable = false;
         }
 
-        res.render('viewpost', {loggedIn: req.session.loggedIn, post, editable});
+        const dbCommentData = await Comment.findAll({
+            where: {
+                post_id: req.params.id,
+            }
+        });
+
+        const comments = dbCommentData.map((comment) => comment.get({ plain: true }))
+
+
+        res.render('viewpost', {loggedIn: req.session.loggedIn, post, editable, comments});
     } catch (err) {
         res.status(500).json(err);
     }
