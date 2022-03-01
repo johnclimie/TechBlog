@@ -46,7 +46,7 @@ router.get('/create', withAuth, async (req, res) => {
     }
 })
 
-router.get('/viewpost/:id', withAuth, async (req, res) => {
+router.get('/viewpost/:id', async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id);
 
