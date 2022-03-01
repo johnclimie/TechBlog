@@ -1,7 +1,10 @@
+<!--Creates dashboard to show each post created by logged in user-->
 <div class="d-flex justify-content-center row">
 {{#each postDataArr}}
 {{> post}}
 {{/each}}
+
+<!--Creates button to create new post-->
 <form action="/create" class="btn w-50 m-3">
     <button class="btn btn-success w-50 m-3" type="submit">Add Post</button>
 </form>
