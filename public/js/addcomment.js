@@ -1,10 +1,9 @@
+// Creates comment
 async function addCommentFormHandler(event) {
     event.preventDefault();
-
+// Uses value form text in textbox
     const commentcontent = document.querySelector('#commentcontent').value.trim();
-
-    console.log(commentcontent);
-
+// Value of textbox is loaded into body
     if (commentcontent) {
         const response = await fetch('/api/comments/', {
             method: 'POST',
@@ -15,7 +14,7 @@ async function addCommentFormHandler(event) {
                 'content-Type': 'application/json'
             }
         });
-
+// Reloads if successful
         if (response.ok) {
             console.log('success');
             

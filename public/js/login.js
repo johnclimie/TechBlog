@@ -1,10 +1,11 @@
+// Allows user to log in
 const loginFormHandler = async (event) => {
     event.preventDefault();
-
+    // Uses value from text in textboxes
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
 
-
+    // Value of textboxes is loaded into body
     if (username && password) {
         const response = await fetch('/api/users/login', {
             method: 'POST',
@@ -15,7 +16,7 @@ const loginFormHandler = async (event) => {
                 'Content-Type': 'application/json'
             }
         });
-
+        // Redirects to home if successful
         if (response.ok) {
             console.log('success');
 
@@ -26,14 +27,14 @@ const loginFormHandler = async (event) => {
     }
 }
 
-
+// Creates new user
 const signupFormHandler = async (event) => {
     event.preventDefault()
-
+    // Uses value form text in textboxes
     const username = document.querySelector('#username-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
-
+    // Value of textboxes are loaded into body
     if (username && email && password) {
         const response = await fetch('/api/users/', {
             method: 'POST',
@@ -44,7 +45,7 @@ const signupFormHandler = async (event) => {
                 'Content-Type': 'application/json'
             }
         });
-
+        // Redirects to home if successful
         if (response.ok) {
             console.log('success');
 
