@@ -19,10 +19,11 @@
 
     <nav class="navbar navbar-muted bg-muted navbar-expand-lg p-3">
       <a href="/" class="navbar-brand text-success">Home</a>
-      <a href="/dashboard" class="navbar-brand text-success">Dashboard</a>
       {{#if loggedIn}}
+      <a href="/dashboard" class="navbar-brand text-success">Dashboard</a>
       <a href="/"id="logout" class="navbar-brand text-success">Log Out</a>
       {{else}}
+      <a href="/login" class="navbar-brand text-success">Dashboard</a>
       <a href="/login" class="navbar-brand text-success">Log In or Sign Up</a>
       {{/if}}
     </nav>

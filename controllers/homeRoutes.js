@@ -22,9 +22,13 @@ router.get('/login', async (req, res) => {
     }
 })
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
-        const postData = await Post.findAll();
+        const postData = await Post.findAll({
+            where: {
+                user_id: req.session.user_id
+            }
+        });
 
         const postDataArr = postData.map((post) => post.get({ plain: true }))
 
@@ -42,7 +46,7 @@ router.get('/create', withAuth, async (req, res) => {
     }
 })
 
-router.get('/viewpost/:id', async (req, res) => {
+router.get('/viewpost/:id', withAuth, async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id);
 

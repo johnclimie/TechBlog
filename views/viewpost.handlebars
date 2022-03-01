@@ -9,6 +9,10 @@
                     <form action="/edit/{{post.id}}" class="btn btn-warning w-50 m-2 p-2">
                         <button id="editbtn" class="btn btn-warning w-50 m-3 p-2">Edit post</button>
                     </form>
+
+                    <form action="" class="btn btn-danger w-50 m-2 p-2" id="deleteFtn">
+                        <button id="deletebtn" class="btn btn-danger w-50 m-3 p-2">Delete post</button>
+                    </form>
                 </div>
             {{/if}}
             <h5>Comments</h5>
@@ -25,4 +29,6 @@
     </div>
 </div>
 
+<script src="/js/delete.js"></script>
  <script src="/js/addcomment.js"></script>
+ 
