@@ -1,8 +1,9 @@
+// Sets up connection
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
 let sequelize;
-
+// Uses local host if JAWSDB is not existent
 if (process.env.JAWSDB_URL) {
     sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
