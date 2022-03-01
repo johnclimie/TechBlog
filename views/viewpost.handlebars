@@ -6,7 +6,9 @@
         <div>
             {{#if editable}}
                 <div class="d-flex justify-content-center">
-                    <button id="editbtn" class="btn btn-warning w-50 m-3 p-2">Edit post</button>
+                    <form action="/edit/{{post.id}}" class="btn btn-warning w-50 m-2 p-2">
+                        <button id="editbtn" class="btn btn-warning w-50 m-3 p-2">Edit post</button>
+                    </form>
                 </div>
             {{/if}}
             <h5>Comments</h5>
