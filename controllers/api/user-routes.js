@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// Creates User based on what on what is in body
 router.post('/', async (req, res) => {
     try {
         const dbUserData = await User.create({
@@ -21,6 +22,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+// Logs in existing user if the user exists
 router.post('/login', async (req, res) => {
     try {
 
@@ -63,6 +65,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// Logs out user
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
       req.session.destroy(() => {

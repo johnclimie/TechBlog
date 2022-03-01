@@ -5,7 +5,7 @@ const postRoutes = require('./post-routes');
 const commentRoutes = require('./comment-routes');
 const editRoutes = require('./edit-routes')
 const deleteRoutes = require('./delete-routes');
-
+// Creates routes for API
 router.use('/users', userRoutes);
 router.use('/posts', postRoutes);
 router.use('/comments', commentRoutes);

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Post } = require('../../models'); 
-
+// Creates put request in order for a user to update post
 router.put('/:id', async (req, res) => {
     try {
         const dbPostData = await Post.update({

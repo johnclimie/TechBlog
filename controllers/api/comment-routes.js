@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
-
+// Allows Users to comment on a specific post
 router.post('/', async (req, res) => {
     try {
         const date = new Date();

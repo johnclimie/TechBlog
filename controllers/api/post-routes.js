@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
 
+// Creates new Post
 router.post('/', async (req, res) => {
     try {
+        // Creates string for current date
         const date = new Date();
         const dateString = date.toLocaleDateString('en-us', { year:'numeric', month: 'long', day:'numeric' })
 

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Post, Comment } = require('../models');
 const withAuth = require('../utils/helpers');
 
+// Loads all posts for homepage
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll();
@@ -14,6 +15,7 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Renders login handlebar
 router.get('/login', async (req, res) => {
     try {
         res.render('login', {loggedIn: req.session.loggedIn});
@@ -22,6 +24,7 @@ router.get('/login', async (req, res) => {
     }
 })
 
+// Renders dashboard handlebar and only loads posts for signed in user
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -38,6 +41,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 })
 
+// Renders create handlebar to create a new post
 router.get('/create', withAuth, async (req, res) => {
     try {
         res.render('create', {loggedIn: req.session.loggedIn});
@@ -46,6 +50,7 @@ router.get('/create', withAuth, async (req, res) => {
     }
 })
 
+// Renders viewpost handlebar and Loads all comments for that post
 router.get('/viewpost/:id', async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id);
@@ -77,6 +82,7 @@ router.get('/viewpost/:id', async (req, res) => {
     }
 })
 
+// Renders edit handlebar in order to edit selected post
 router.get('/edit/:id', withAuth, async (req, res) => {
     try{
         const dbPostData = await Post.findByPk(req.params.id);
