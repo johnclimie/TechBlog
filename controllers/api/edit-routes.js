@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Post } = require('../../models'); 
 
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const date = new Date();
         const dateString = date.toLocaleDateString('en-us', { year:'numeric', month: 'long', day:'numeric' });
@@ -9,10 +9,14 @@ router.put('/', async (req, res) => {
 
         const dbPostData = await Post.update({
             title: req.body.title,
-            postcontent: req.body.postcontent
-        });
+            postcontent: req.body.postcontent,
+        }, {
+            where: {
+                id: req.params.id
+            }
+        })
 
-        await Post.save();
+        // console.log(editPost);
 
         res.status(200).json(dbPostData);
     } catch (err) {

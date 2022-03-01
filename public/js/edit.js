@@ -2,10 +2,11 @@ async function editPostFormHandler(event) {
     event.preventDefault();
 
     const title = document.querySelector('#title').value.trim();
-    const postcontent = documnet.querySelector('#postcontent').value.trim();
+    const postcontent = document.querySelector('#postcontent').value.trim();
+    const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
 
     if (title && postcontent) {
-        const response = await fetch ('/api/posts/', {
+        const response = await fetch (`/api/edit/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 title,
@@ -19,7 +20,7 @@ async function editPostFormHandler(event) {
         if (response.ok) {
             console.log('success');
 
-            documnet.location.replace('/dashboard');
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
         }
